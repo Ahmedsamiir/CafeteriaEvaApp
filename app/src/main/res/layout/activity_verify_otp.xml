@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ResetPassActivity">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/background_intro"
+        app:layout_constraintHeight_percent="0.27"
+        android:scaleType="centerCrop"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.78"
+        app:layout_constraintVertical_bias="1"
+        android:background="@drawable/rectangle_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Verfication"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+        <ImageView
+            android:id="@+id/send_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/verification_foreground"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verify"
+            />
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/enter_the_otp_sent_to"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintVertical_bias=".1"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verify"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_verifyotp_mobilenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+201113022485"
+            android:textAlignment="center"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message"
+            />
+        <LinearLayout
+            android:id="@+id/otp_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_verifyotp_mobilenumber"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_verifyotp_code1"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+            <EditText
+                android:id="@+id/et_verifyotp_code2"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+            <EditText
+                android:id="@+id/et_verifyotp_code3"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+            <EditText
+                android:id="@+id/et_verifyotp_code4"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+            <EditText
+                android:id="@+id/et_verifyotp_code5"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+            <EditText
+                android:id="@+id/et_verifyotp_code6"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_verifyotp_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/otp_code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_verifyotp_timer"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/didn_t_receive_the_otp"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_resendotp_verifyotp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="@string/resend_otp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <Button
+            android:id="@+id/verify_otpBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintVertical_bias=".8"
+            android:text="Get"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/eva_logo"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/eva_foreground"
+        app:layout_constraintVertical_bias=".3"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_view"
+        app:layout_constraintBottom_toTopOf="@+id/constraint_layout"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Eva Cafeteria"
+        android:textSize="16sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintVertical_bias=".2"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/constraint_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eva_logo"
+
+
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

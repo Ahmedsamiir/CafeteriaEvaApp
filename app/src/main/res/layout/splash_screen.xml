@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intro_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_intro"
+    tools:context=".SplashScreen">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/eva_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <ImageView
+        android:id="@+id/food_logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@mipmap/burger_foreground"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bottom_txt"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="@string/yummy_food"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="italic|bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/food_logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="50dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
