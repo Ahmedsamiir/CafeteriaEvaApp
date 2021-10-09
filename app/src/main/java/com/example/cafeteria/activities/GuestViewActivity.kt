@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cafeteria.R
 import com.example.cafeteria.adapters.CategoryAdapter
+import com.example.cafeteria.adapters.OffersAdapter
 import com.example.cafeteria.adapters.RecommendedAdapter
 import com.example.cafeteria.fragments.HomeFragment
 import com.example.cafeteria.fragments.OfferFragment
@@ -27,17 +28,18 @@ class GuestViewActivity : AppCompatActivity() {
     var recyclerviewCategoryList: RecyclerView? = null
     var recyclerviewRecommendedList: RecyclerView?= null
 
-    var bottom_navigation : BottomNavigationView? = null
+    var bottom_navigation2 : BottomNavigationView? = null
+    var recycleViewoffers : RecyclerView? = null
 
-    val homeFragment = HomeFragment()
     val offerFragment = OfferFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_view)
-        bottom_navigation = findViewById(R.id.bottom_navigation)
+        bottom_navigation2 = findViewById(R.id.bottom_navigation2)
         recyclerviewCategoryList = findViewById(R.id.view1)
         recyclerviewRecommendedList = findViewById(R.id.view2)
+        recycleViewoffers = findViewById(R.id.rv_offers)
 
         // recycle for category Items
         recycleViewCategory()
@@ -57,7 +59,7 @@ class GuestViewActivity : AppCompatActivity() {
         }
 
     private fun onBottomNavSelected(){
-        bottom_navigation!!.setOnNavigationItemSelectedListener {
+        bottom_navigation2!!.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.ic_home -> {
                     //makeCurrentFragment(homeFragment)
@@ -66,7 +68,11 @@ class GuestViewActivity : AppCompatActivity() {
 
                 }
                 R.id.ic_cart -> goToLogin()
-                R.id.ic_offer -> makeCurrentFragment(offerFragment)
+                R.id.ic_offer -> {
+                    makeCurrentFragment(offerFragment)
+                    recycleViewOffers()
+
+                }
 
 
 
@@ -75,7 +81,51 @@ class GuestViewActivity : AppCompatActivity() {
             true
         }
     }
+    // to get offers response
+    private fun recycleViewOffers() {
+        recycleViewoffers?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false )
+        val productService: ProductService = ApiClient(this@GuestViewActivity).buildService(ProductService::class.java)
+        val requestCall: Call<List<ProductResponse>> = productService.getProductsInOffer()
+        requestCall.enqueue(object: Callback<List<ProductResponse>>{
+            override fun onResponse(
+                call: Call<List<ProductResponse>>,
+                response: Response<List<ProductResponse>>
+            ) {
+                if(response.isSuccessful){
 
+                    val adapter = OffersAdapter(this@GuestViewActivity,offeredProducts = response.body()!!)
+                    recycleViewoffers!!.adapter = adapter
+                }else{
+                    val errorCode:String = when(response.code()){
+                        400 ->{
+                            "Incorrect email or password."
+                        }
+                        404 -> {
+                            "404 not found"
+                        }
+                        500 -> {
+                            "500 server broken"
+                        }
+                        else ->{
+                            "Unknown error!"
+                        }
+                    }
+                    //loginBtn!!.isActivated = true
+                    Toast.makeText(this@GuestViewActivity, "ERROR!", Toast.LENGTH_LONG).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductResponse>>, t: Throwable) {
+                //loginBtn!!.isActivated = true
+                Toast.makeText(this@GuestViewActivity, "ERROR!",Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+
+    }
+    // to get category response
     private fun recycleViewCategory() {
         recyclerviewCategoryList?.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL, false )
@@ -126,6 +176,7 @@ class GuestViewActivity : AppCompatActivity() {
 
     }
 
+    // to get recommended response
     private fun recycleViewRecommended() {
         recyclerviewRecommendedList?.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL, false )

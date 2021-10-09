@@ -14,6 +14,7 @@ import com.example.cafeteria.fragments.HomeFragment
 import com.example.cafeteria.fragments.OfferFragment
 
 import com.example.cafeteria.adapters.CategoryAdapter
+import com.example.cafeteria.adapters.OffersAdapter
 import com.example.cafeteria.adapters.RecommendedAdapter
 import com.example.cafeteria.models.CategoryResponse
 import com.example.cafeteria.models.ProductResponse
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     var bottom_navigation : BottomNavigationView? = null
 
+    var recycleViewoffers : RecyclerView? = null
+
 
      val homeFragment = HomeFragment()
     val offerFragment = OfferFragment()
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation = findViewById(R.id.bottom_navigation)
         recyclerviewCategoryList = findViewById(R.id.view1)
         recyclerviewRecommendedList = findViewById(R.id.view2)
+        recycleViewoffers = findViewById(R.id.rv_offers)
         makeCurrentFragment(homeFragment)
 
 
@@ -74,8 +78,16 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
 
                 }
-                R.id.ic_cart -> goToCart()
-                R.id.ic_offer -> makeCurrentFragment(offerFragment)
+                R.id.icc_cart ->
+                {
+                    val intent = Intent(this@MainActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.ic_offer -> {
+                    makeCurrentFragment(offerFragment)
+                    recycleViewOffers()
+
+                }
 
                 R.id.ic_logout ->{
                     SessionManager(this@MainActivity).deleteAccessToken()
@@ -85,12 +97,56 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-
-
             }
             true
         }
     }
+
+    // to get offers response
+    private fun recycleViewOffers() {
+        recycleViewoffers?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false )
+        val productService: ProductService = ApiClient(this@MainActivity).buildService(ProductService::class.java)
+        val requestCall: Call<List<ProductResponse>> = productService.getProductsInOffer()
+        requestCall.enqueue(object: Callback<List<ProductResponse>>{
+            override fun onResponse(
+                call: Call<List<ProductResponse>>,
+                response: Response<List<ProductResponse>>
+            ) {
+                if(response.isSuccessful){
+
+                    val adapter = OffersAdapter(this@MainActivity,offeredProducts = response.body()!!)
+                    recycleViewoffers!!.adapter = adapter
+                }else{
+                    val errorCode:String = when(response.code()){
+                        400 ->{
+                            "Incorrect email or password."
+                        }
+                        404 -> {
+                            "404 not found"
+                        }
+                        500 -> {
+                            "500 server broken"
+                        }
+                        else ->{
+                            "Unknown error!"
+                        }
+                    }
+                    //loginBtn!!.isActivated = true
+                    Toast.makeText(this@MainActivity, "ERROR!", Toast.LENGTH_LONG).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductResponse>>, t: Throwable) {
+                //loginBtn!!.isActivated = true
+                Toast.makeText(this@MainActivity, "ERROR!",Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+
+    }
+
 
 // to get category response
     private fun recycleViewCategory() {
@@ -134,8 +190,6 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        // val categoryList : List<FoodItem>
-        //adapter = CategoryAdapter(this, categoryList)
 
     }
     // to get category response

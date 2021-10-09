@@ -7,8 +7,8 @@
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:label="Cafeteria Eva"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/icon_app_foreground"
+        android:roundIcon="@mipmap/icon_app_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cafeteria">
 

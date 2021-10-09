@@ -42,7 +42,7 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         holder.recommendedName.text = singleRecommended.name
         holder.price.text = singleRecommended.price.toString()
         //holder.rating.text = "singleProduct.rate, need to be added by DB"
-        holder.price.text = "${singleRecommended.price}+ LE"
+        holder.price.text = "${singleRecommended.price} LE"
 /*
         if(!singleRecommended.inOffers!!){
             holder.offerImage.visibility=View.GONE
