@@ -1,4 +1,4 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.cafeteria.R
+import com.example.cafeteria.USER_DATA
+import com.example.cafeteria.activities.SendOTP
 import com.example.cafeteria.helpers.UserHelper
 import com.example.cafeteria.models.RegisterRequest
 import com.example.cafeteria.models.RegisterResponse
-import com.example.cafeteria.models.UserRequest
-import com.example.cafeteria.models.UserResponse
 import com.example.cafeteria.services.ApiClient
-import com.example.cafeteria.services.LoginService
 import com.example.cafeteria.services.RegisterService
 import com.example.cafeteria.services.SessionManager
 import retrofit2.Call

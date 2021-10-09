@@ -38,6 +38,17 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        /*
+         val adapter = OrdersAdapter(orders)
+        val recycler = view.findViewById<RecyclerView>(R.id.rv_orders_orders)
+        recycler.layoutManager = LinearLayoutManager(context)
+        recycler.adapter = adapter
+         */
+
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

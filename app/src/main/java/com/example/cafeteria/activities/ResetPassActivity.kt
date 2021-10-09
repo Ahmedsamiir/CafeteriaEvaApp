@@ -1,11 +1,11 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import com.example.cafeteria.*
 import com.example.cafeteria.models.ResetPasswordRequest
 import com.example.cafeteria.models.ResetPasswordResponse
 import com.example.cafeteria.services.ApiClient

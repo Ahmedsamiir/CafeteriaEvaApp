@@ -1,4 +1,4 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cafeteria.PHONE_NUMBER
+import com.example.cafeteria.PHONE_RESPONSE
+import com.example.cafeteria.R
+import com.example.cafeteria.USER_DATA
 import com.example.cafeteria.models.SendOtpRequest
 import com.example.cafeteria.models.SendOtpResponse
 import com.example.cafeteria.services.ApiClient
@@ -105,9 +109,9 @@ class VerifyOTPActivity : AppCompatActivity() {
 
                     verifyOtpBtn!!.isActivated=true
                     if(response.body()!!.isCorrect){
-                        val intent = Intent(this@VerifyOTPActivity,MainActivity::class.java)
+                        val intent = Intent(this@VerifyOTPActivity, MainActivity::class.java)
                         intent.putExtra(PHONE_RESPONSE,getPhoneResponse())
-                        startActivity(Intent(this@VerifyOTPActivity,MainActivity::class.java))
+                        startActivity(Intent(this@VerifyOTPActivity, MainActivity::class.java))
 
                         finish()
                     }else{
@@ -139,7 +143,7 @@ class VerifyOTPActivity : AppCompatActivity() {
     }
 
     private fun setViewPhonenumber(){
-        verifyOtpMobileNumber!!.text=PHONE_NUMBER
+        verifyOtpMobileNumber!!.text= PHONE_NUMBER
     }
     private fun initEditTexts(){
         listOfet= listOf(
@@ -186,7 +190,7 @@ class VerifyOTPActivity : AppCompatActivity() {
         }
 
         resendOtp!!.setOnClickListener {
-            startActivity(Intent(this,SendOTP::class.java))
+            startActivity(Intent(this, SendOTP::class.java))
             finish()
         }
 

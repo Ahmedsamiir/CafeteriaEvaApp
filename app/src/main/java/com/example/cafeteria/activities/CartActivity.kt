@@ -1,13 +1,12 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cafeteria.R
 
-class SkipHomeActivity : AppCompatActivity() {
+class CartActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_skip_home)
-
-
+        setContentView(R.layout.activity_cart)
     }
 }

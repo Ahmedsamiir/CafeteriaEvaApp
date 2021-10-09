@@ -10,6 +10,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
+    <color name="red">#FF0000</color>
     <color name="colorAccent">#F44336</color>
 
 

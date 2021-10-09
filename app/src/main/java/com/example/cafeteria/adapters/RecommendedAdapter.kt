@@ -1,4 +1,4 @@
-package com.example.cafeteria.helpers
+package com.example.cafeteria.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.cafeteria.CATEGORY_DATA
-import com.example.cafeteria.CategoryDetailsActivity
+import com.example.cafeteria.activities.ShowDetailsActivity
 import com.example.cafeteria.R
 import com.example.cafeteria.models.ProductResponse
-import retrofit2.Callback
 import java.io.Serializable
+import java.util.ArrayList
 
 class RecommendedAdapter(val context: Context, private var recommendedList:List<ProductResponse>) : RecyclerView.Adapter<RecommendedAdapter.RecommendViewHolder>(){
 
@@ -25,7 +25,9 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         val price:TextView = view.findViewById(R.id.price)
         val recommendedImage :ImageView = view.findViewById(R.id.pic)
         val recommendedName : TextView = view.findViewById(R.id.title)
+
         val addBtn : ImageView = view.findViewById(R.id.addBtn)
+
 
     }
 
@@ -39,6 +41,14 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         val singleRecommended = recommendedList[position]
         holder.recommendedName.text = singleRecommended.name
         holder.price.text = singleRecommended.price.toString()
+        //holder.rating.text = "singleProduct.rate, need to be added by DB"
+        holder.price.text = "${singleRecommended.price}+ LE"
+/*
+        if(!singleRecommended.inOffers!!){
+            holder.offerImage.visibility=View.GONE
+        }
+
+ */
 
         //show loading for glide:
         val circularProgressDrawable = CircularProgressDrawable(context)
@@ -55,7 +65,7 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         //When press on card item:
         holder.itemView.setOnClickListener {
             //go to page to view list of foods in this menu:
-            val intent = Intent(holder.itemView.context, CategoryDetailsActivity::class.java)
+            val intent = Intent(holder.itemView.context, ShowDetailsActivity::class.java)
             intent.putExtra(CATEGORY_DATA, singleRecommended as Serializable)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
@@ -65,6 +75,14 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         return  recommendedList.size
 
 
+    }
+
+    /**
+     * For search functionality:
+     * */
+    fun updateList(filteredList: ArrayList<ProductResponse>) {
+        recommendedList = filteredList
+        notifyDataSetChanged()
     }
 
 }

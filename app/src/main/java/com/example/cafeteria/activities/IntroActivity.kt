@@ -1,10 +1,10 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.content.Intent
-import android.net.wifi.hotspot2.pps.HomeSp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.cafeteria.R
 import com.example.cafeteria.services.SessionManager
 
 class IntroActivity :AppCompatActivity() {

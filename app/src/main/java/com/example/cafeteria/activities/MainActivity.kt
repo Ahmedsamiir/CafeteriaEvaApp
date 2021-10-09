@@ -1,4 +1,4 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,14 +7,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cafeteria.fragments.CartFragment
+import com.example.cafeteria.R
+import com.example.cafeteria.USER_DATA
+
 import com.example.cafeteria.fragments.HomeFragment
 import com.example.cafeteria.fragments.OfferFragment
-import com.example.cafeteria.fragments.ProfileFragment
-import com.example.cafeteria.helpers.CategoryAdapter
-import com.example.cafeteria.helpers.RecommendedAdapter
+
+import com.example.cafeteria.adapters.CategoryAdapter
+import com.example.cafeteria.adapters.RecommendedAdapter
 import com.example.cafeteria.models.CategoryResponse
 import com.example.cafeteria.models.ProductResponse
+import com.example.cafeteria.models.UserResponse
 import com.example.cafeteria.services.ApiClient
 import com.example.cafeteria.services.CategoryService
 import com.example.cafeteria.services.ProductService
@@ -32,8 +35,6 @@ class MainActivity : AppCompatActivity() {
 
 
      val homeFragment = HomeFragment()
-    val profileFragment = ProfileFragment()
-    val cartFragment = CartFragment()
     val offerFragment = OfferFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +48,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        // recycle for category Items
         recycleViewCategory()
+        // recycle for Recommended Items
         recycleViewRecommended()
+        // toggle between bottom navbar Item
+        onBottomNavSelected()
     }
 
     //For bottom navigation bar:
@@ -64,15 +68,19 @@ class MainActivity : AppCompatActivity() {
     private fun onBottomNavSelected(){
         bottom_navigation!!.setOnNavigationItemSelectedListener {
             when (it.itemId){
-                R.id.ic_home -> makeCurrentFragment(homeFragment)
-                R.id.ic_profile-> makeCurrentFragment(profileFragment)
-                R.id.ic_cart -> makeCurrentFragment(cartFragment)
+                R.id.ic_home -> {
+                    makeCurrentFragment(homeFragment)
+                    val intent = Intent(this@MainActivity, MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+                R.id.ic_cart -> goToCart()
                 R.id.ic_offer -> makeCurrentFragment(offerFragment)
+
                 R.id.ic_logout ->{
                     SessionManager(this@MainActivity).deleteAccessToken()
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     startActivity(intent)
-
                     finish()
 
                 }
@@ -84,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+// to get category response
     private fun recycleViewCategory() {
         recyclerviewCategoryList?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false )
         val categoryService: CategoryService = ApiClient(this@MainActivity).buildService(CategoryService::class.java)
@@ -95,9 +103,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<CategoryResponse>>
             ) {
                 if(response.isSuccessful){
-                    //sessionManager.saveAccessToken(response.body()!!)
-                    //goToHome(response.body()!!)
-                    //val categoryList : List<CategoryResponse>= response.body()!!
+
                    val adapter = CategoryAdapter(this@MainActivity,categoryList = response.body()!!)
                     recyclerviewCategoryList!!.adapter = adapter
                 }else{
@@ -132,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         //adapter = CategoryAdapter(this, categoryList)
 
     }
-
+    // to get category response
     private fun recycleViewRecommended() {
         recyclerviewRecommendedList?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false )
         val productService: ProductService = ApiClient(this@MainActivity).buildService(ProductService::class.java)
@@ -174,15 +180,25 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-
-
-/*
-        val recommendedList :List<ProductResponse>
-        adapter2 = RecommendedAdapter(this,recommendedList)
-
- */
-
     }
+
+    /**
+     * To go to login page with user response data:
+     * */
+    private fun goToLogin(){
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    /**
+     * To go to Cart page with user response data:
+     * */
+    private fun goToCart(){
+        val intent = Intent(this@MainActivity, CartActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 
 
 }

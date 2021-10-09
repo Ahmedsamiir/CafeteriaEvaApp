@@ -1,14 +1,14 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SimPhonebookContract.SimRecords.PHONE_NUMBER
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.evapharma.cafeteriaapp.shortToast
+import com.example.cafeteria.*
 import com.example.cafeteria.models.PhoneResponse
 import com.example.cafeteria.models.SendPhoneRequest
 import com.example.cafeteria.services.ApiClient
@@ -111,7 +111,7 @@ class SendOTP : AppCompatActivity() {
     }
     private fun initButtons(){
         sendOtpBtn!!.setOnClickListener {
-            if(sendOtpNumInput!!.text.isNotEmpty() && sendOtpNumInput!!.text.length==PHONE_LENGTH){
+            if(sendOtpNumInput!!.text.isNotEmpty() && sendOtpNumInput!!.text.length== PHONE_LENGTH){
                 callAPI(sendOtpNumInput!!.text.toString())
 
             }else{

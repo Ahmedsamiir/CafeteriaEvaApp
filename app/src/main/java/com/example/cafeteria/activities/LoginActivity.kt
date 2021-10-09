@@ -1,16 +1,14 @@
-package com.example.cafeteria
+package com.example.cafeteria.activities
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AlertDialog.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.cafeteria.*
 import com.example.cafeteria.helpers.UserHelper
 import com.example.cafeteria.models.UserRequest
 import  com.example.cafeteria.models.UserResponse
@@ -29,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
     var forgetPassBtn : TextView? = null
     var signup:TextView?= null
 
+    var skip :TextView? = null
+
 
 
     //To get access token:
@@ -46,6 +46,9 @@ class LoginActivity : AppCompatActivity() {
         loginBtn = findViewById(R.id.loginBtn)
         etemail = findViewById(R.id.et_email)
         etpassword = findViewById(R.id.pass)
+        skip = findViewById(R.id.skip)
+
+
 
 
 
@@ -58,6 +61,11 @@ class LoginActivity : AppCompatActivity() {
         signup!!.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
 
+        }
+
+        //go to main activity
+        skip!!.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, GuestViewActivity::class.java))
         }
 
         sessionManager = SessionManager(this@LoginActivity)

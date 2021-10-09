@@ -22,4 +22,8 @@
     <string name="text_label_3">Cart</string>
     <string name="text_label_5">Logout</string>
     <string name="text_label_4">Offers</string>
+    <!--Error layout-->
+    <string name="error">Error</string>
+    <string name="error_message">Something went wrong, please try again later!</string>
+    <string name="retry">Retry</string>
 </resources>

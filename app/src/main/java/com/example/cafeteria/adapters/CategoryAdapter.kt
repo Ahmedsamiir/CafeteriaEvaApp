@@ -1,4 +1,4 @@
-package com.example.cafeteria.helpers
+package com.example.cafeteria.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.cafeteria.CATEGORY_DATA
-import com.example.cafeteria.CategoryDetailsActivity
+import com.example.cafeteria.activities.ShowDetailsActivity
 import com.example.cafeteria.R
 import com.example.cafeteria.models.CategoryResponse
-import retrofit2.Callback
 import java.io.Serializable
 import java.util.ArrayList
 
@@ -26,6 +25,8 @@ class CategoryAdapter(val context: Context, private var categoryList: List<Categ
     inner class  MealsviewHolder(view: View):RecyclerView.ViewHolder(view){
         val categoryImage: ImageView = view.findViewById(R.id.categoryPic)
         val categoryName: TextView = view.findViewById(R.id.categoryName)
+       // val description : TextView = view.findViewById(R.id.descriptionTxt)
+        //val rating : TextView = view.findViewById(R.id.starTxt)
         val mainLayout:ConstraintLayout= view.findViewById(R.id.mainLayout)
 
     }
@@ -55,7 +56,7 @@ class CategoryAdapter(val context: Context, private var categoryList: List<Categ
         //When press on card item:
         holder.itemView.setOnClickListener {
             //go to page to view list of foods in this menu:
-            val intent = Intent(holder.itemView.context, CategoryDetailsActivity::class.java)
+            val intent = Intent(holder.itemView.context, ShowDetailsActivity::class.java)
             intent.putExtra(CATEGORY_DATA, singleCategory as Serializable)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
