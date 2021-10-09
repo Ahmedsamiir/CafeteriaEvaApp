@@ -1,10 +1,9 @@
 package com.example.cafeteria
 
 import android.content.Intent
-import android.net.wifi.hotspot2.pps.HomeSp
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.cafeteria.services.SessionManager
 
 class IntroActivity :AppCompatActivity() {
@@ -12,7 +11,7 @@ class IntroActivity :AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
-        val startBtn = findViewById<ConstraintLayout>(R.id.startbtn)
+        val startBtn = findViewById<Button>(R.id.get_started_button)
 
         startBtn.setOnClickListener {
             if(SessionManager(this@IntroActivity).fetchAccessToken()!=null){
