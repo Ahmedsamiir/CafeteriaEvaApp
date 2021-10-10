@@ -8,7 +8,7 @@
     android:elevation="3dp">
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/price_recommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -16,14 +16,15 @@
         android:textColor="#373B54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/addBtn"
-        app:layout_constraintEnd_toStartOf="@+id/addBtn"
+        android:layout_marginRight="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addBtn_recommend"
+        app:layout_constraintEnd_toStartOf="@+id/addBtn_recommend"
         app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="@+id/pic"
-        app:layout_constraintTop_toTopOf="@+id/addBtn" />
+        app:layout_constraintStart_toStartOf="@+id/pic_recommend"
+        app:layout_constraintTop_toTopOf="@+id/addBtn_recommend" />
 
     <ImageView
-        android:id="@+id/pic"
+        android:id="@+id/pic_recommend"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -35,25 +36,25 @@
         app:srcCompat="@drawable/burger" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title_recommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="title"
         android:textColor="#373B54"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/pic"
-        app:layout_constraintStart_toStartOf="@+id/pic"
-        app:layout_constraintTop_toBottomOf="@+id/pic" />
+        app:layout_constraintEnd_toEndOf="@+id/pic_recommend"
+        app:layout_constraintStart_toStartOf="@+id/pic_recommend"
+        app:layout_constraintTop_toBottomOf="@+id/pic_recommend" />
 
     <ImageView
-        android:id="@+id/addBtn"
+        android:id="@+id/addBtn_recommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/pic"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="@+id/pic_recommend"
+        app:layout_constraintTop_toBottomOf="@+id/title_recommend"
         app:srcCompat="@drawable/plus_circle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

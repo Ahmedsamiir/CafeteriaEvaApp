@@ -32,11 +32,11 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/titleTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/titleTxt_offer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/titleTxt" />
+        app:layout_constraintTop_toTopOf="@+id/titleTxt_offer" />
     <ImageView
-        android:id="@+id/addBtn"
+        android:id="@+id/addBtn_offer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/plus_circle" />
 
     <ImageView
-        android:id="@+id/pic"
+        android:id="@+id/pic_offer"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="4dp"
@@ -60,7 +60,7 @@
         app:srcCompat="@drawable/pizza1" />
 
     <TextView
-        android:id="@+id/titleTxt"
+        android:id="@+id/titleTxt_offer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -69,8 +69,8 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/pic"
-        app:layout_constraintTop_toTopOf="@+id/pic" />
+        app:layout_constraintStart_toEndOf="@+id/pic_offer"
+        app:layout_constraintTop_toTopOf="@+id/pic_offer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -78,8 +78,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/orange_bar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titleTxt"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt">
+        app:layout_constraintStart_toStartOf="@+id/titleTxt_offer"
+        app:layout_constraintTop_toBottomOf="@+id/titleTxt_offer">
 
         <ImageView
             android:id="@+id/plusCardBtn"

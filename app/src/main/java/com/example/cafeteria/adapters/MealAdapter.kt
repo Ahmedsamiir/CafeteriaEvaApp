@@ -12,38 +12,38 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.cafeteria.CATEGORY_DATA
-import com.example.cafeteria.activities.ShowDetailsActivity
 import com.example.cafeteria.R
+import com.example.cafeteria.activities.ShowDetailsActivity
 import com.example.cafeteria.models.ProductResponse
 import java.io.Serializable
 import java.util.ArrayList
 
-class RecommendedAdapter(val context: Context, private var recommendedList:List<ProductResponse>) :
-    RecyclerView.Adapter<RecommendedAdapter.RecommendViewHolder>(){
+class MealAdapter (val context: Context, private var mealList:List<ProductResponse>) :
+    RecyclerView.Adapter<MealAdapter.MealViewHolder>(){
 
-    inner class RecommendViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class MealViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        val price:TextView = view.findViewById(R.id.price_recommend)
-        val recommendedImage :ImageView = view.findViewById(R.id.pic_recommend)
-        val recommendedName : TextView = view.findViewById(R.id.title_recommend)
+        val mealPrice: TextView = view.findViewById(R.id.foodPrice)
+        val mealImage : ImageView = view.findViewById(R.id.pic_food)
+        val mealName : TextView = view.findViewById(R.id.titleTxt_food)
 
-        val addBtn : ImageView = view.findViewById(R.id.addBtn_recommend)
+        val mealAddBtn : ImageView = view.findViewById(R.id.addBtn_food)
 
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealAdapter.MealViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.viewholder_recommended, parent, false)
-        return RecommendViewHolder(view)
+            .inflate(R.layout.food_item, parent, false)
+        return MealViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
-        val singleRecommended = recommendedList[position]
-        holder.recommendedName.text = singleRecommended.name
-        holder.price.text = singleRecommended.price.toString()
+    override fun onBindViewHolder(holder: MealAdapter.MealViewHolder, position: Int) {
+        val singleMeal = mealList[position]
+        holder.mealName.text = singleMeal.name
+        holder.mealPrice.text = singleMeal.price.toString()
         //holder.rating.text = "singleProduct.rate, need to be added by DB"
-        holder.price.text = "${singleRecommended.price} LE"
+        holder.mealPrice.text = "${singleMeal.price} LE"
 /*
         if(!singleRecommended.inOffers!!){
             holder.offerImage.visibility=View.GONE
@@ -57,23 +57,23 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
 
-        Glide.with(holder.recommendedImage)
-            .load(singleRecommended.imageUrl)
+        Glide.with(holder.mealImage)
+            .load(singleMeal.imageUrl)
             .placeholder(circularProgressDrawable)
-            .into(holder.recommendedImage)
+            .into(holder.mealImage)
 
 
         //When press on card item:
         holder.itemView.setOnClickListener {
             //go to page to view list of foods in this menu:
             val intent = Intent(holder.itemView.context, ShowDetailsActivity::class.java)
-            intent.putExtra(CATEGORY_DATA, singleRecommended as Serializable)
+            intent.putExtra(CATEGORY_DATA, singleMeal as Serializable)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
 
     override fun getItemCount(): Int {
-        return  recommendedList.size
+        return  mealList.size
 
 
     }
@@ -82,8 +82,7 @@ class RecommendedAdapter(val context: Context, private var recommendedList:List<
      * For search functionality:
      * */
     fun updateList(filteredList: ArrayList<ProductResponse>) {
-        recommendedList = filteredList
+        mealList = filteredList
         notifyDataSetChanged()
     }
-
 }

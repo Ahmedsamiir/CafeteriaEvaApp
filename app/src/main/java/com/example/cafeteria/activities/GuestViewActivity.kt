@@ -42,9 +42,9 @@ class GuestViewActivity : AppCompatActivity() {
         recycleViewoffers = findViewById(R.id.rv_offers)
 
         // recycle for category Items
-        recycleViewCategory()
+        //recycleViewCategory()
         // recycle for Recommended Items
-        recycleViewRecommended()
+        //recycleViewRecommended()
 
         // toggle between bottom navbar Item
         onBottomNavSelected()
@@ -61,18 +61,27 @@ class GuestViewActivity : AppCompatActivity() {
     private fun onBottomNavSelected(){
         bottom_navigation2!!.setOnNavigationItemSelectedListener {
             when (it.itemId){
-                R.id.ic_home -> {
+                /*
+                R.id.ic_guest_home -> {
                     //makeCurrentFragment(homeFragment)
                     val intent = Intent(this@GuestViewActivity, GuestViewActivity::class.java)
                     startActivity(intent)
 
                 }
-                R.id.ic_cart -> goToLogin()
-                R.id.ic_offer -> {
-                    makeCurrentFragment(offerFragment)
-                    recycleViewOffers()
+
+                 */
+                R.id.ic_guest_cart -> {
+                    val intent = Intent(this@GuestViewActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                /*
+                R.id.ic_guest_offer -> {
+                    val intent = Intent(this@GuestViewActivity, OffersActivity::class.java)
+                    startActivity(intent)
 
                 }
+
+                 */
 
 
 

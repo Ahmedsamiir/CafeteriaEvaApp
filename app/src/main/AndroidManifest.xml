@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cafeteria">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:label="Cafeteria Eva"
         android:icon="@mipmap/icon_app_foreground"
+        android:label="Cafeteria Eva"
         android:roundIcon="@mipmap/icon_app_foreground"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Cafeteria">
-
+        android:theme="@style/Theme.Cafeteria"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.SingleMealActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.OffersActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".activities.SplashScreen"
             android:exported="true"
@@ -24,50 +31,32 @@
         </activity>
         <activity
             android:name=".activities.IntroActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.SignupActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.SendOTP"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.ResetPassActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.CartActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.ShowDetailsActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.GuestViewActivity"
-            android:theme="@style/Theme.Transparent">
-
-        </activity>
+            android:theme="@style/Theme.Transparent"></activity>
     </application>
 
 </manifest>

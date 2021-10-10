@@ -8,17 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cafeteria.R
-import com.example.cafeteria.USER_DATA
-
-import com.example.cafeteria.fragments.HomeFragment
-import com.example.cafeteria.fragments.OfferFragment
-
 import com.example.cafeteria.adapters.CategoryAdapter
-import com.example.cafeteria.adapters.OffersAdapter
 import com.example.cafeteria.adapters.RecommendedAdapter
 import com.example.cafeteria.models.CategoryResponse
 import com.example.cafeteria.models.ProductResponse
-import com.example.cafeteria.models.UserResponse
 import com.example.cafeteria.services.ApiClient
 import com.example.cafeteria.services.CategoryService
 import com.example.cafeteria.services.ProductService
@@ -37,8 +30,6 @@ class MainActivity : AppCompatActivity() {
     var recycleViewoffers : RecyclerView? = null
 
 
-     val homeFragment = HomeFragment()
-    val offerFragment = OfferFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         recyclerviewCategoryList = findViewById(R.id.view1)
         recyclerviewRecommendedList = findViewById(R.id.view2)
         recycleViewoffers = findViewById(R.id.rv_offers)
-        makeCurrentFragment(homeFragment)
 
 
 
@@ -73,20 +63,20 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation!!.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.ic_home -> {
-                    makeCurrentFragment(homeFragment)
                     val intent = Intent(this@MainActivity, MainActivity::class.java)
                     startActivity(intent)
 
                 }
-                R.id.icc_cart ->
+                R.id.ic_cart ->
                 {
-                    val intent = Intent(this@MainActivity, MainActivity::class.java)
+                    val intent = Intent(this@MainActivity, CartActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.ic_offer -> {
-                    makeCurrentFragment(offerFragment)
-                    recycleViewOffers()
-
+                    //makeCurrentFragment(offerFragment)
+                    //recycleViewOffers()
+                    val intent = Intent(this@MainActivity, OffersActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.ic_logout ->{
@@ -102,50 +92,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // to get offers response
-    private fun recycleViewOffers() {
-        recycleViewoffers?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false )
-        val productService: ProductService = ApiClient(this@MainActivity).buildService(ProductService::class.java)
-        val requestCall: Call<List<ProductResponse>> = productService.getProductsInOffer()
-        requestCall.enqueue(object: Callback<List<ProductResponse>>{
-            override fun onResponse(
-                call: Call<List<ProductResponse>>,
-                response: Response<List<ProductResponse>>
-            ) {
-                if(response.isSuccessful){
-
-                    val adapter = OffersAdapter(this@MainActivity,offeredProducts = response.body()!!)
-                    recycleViewoffers!!.adapter = adapter
-                }else{
-                    val errorCode:String = when(response.code()){
-                        400 ->{
-                            "Incorrect email or password."
-                        }
-                        404 -> {
-                            "404 not found"
-                        }
-                        500 -> {
-                            "500 server broken"
-                        }
-                        else ->{
-                            "Unknown error!"
-                        }
-                    }
-                    //loginBtn!!.isActivated = true
-                    Toast.makeText(this@MainActivity, "ERROR!", Toast.LENGTH_LONG).show()
-
-                }
-            }
-
-            override fun onFailure(call: Call<List<ProductResponse>>, t: Throwable) {
-                //loginBtn!!.isActivated = true
-                Toast.makeText(this@MainActivity, "ERROR!",Toast.LENGTH_LONG).show()
-            }
-
-        })
-
-
-    }
 
 
 // to get category response
@@ -236,22 +182,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * To go to login page with user response data:
-     * */
-    private fun goToLogin(){
-        val intent = Intent(this@MainActivity, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-    /**
-     * To go to Cart page with user response data:
-     * */
-    private fun goToCart(){
-        val intent = Intent(this@MainActivity, CartActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+
 
 
 

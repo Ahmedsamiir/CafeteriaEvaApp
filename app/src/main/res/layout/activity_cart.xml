@@ -34,7 +34,7 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/view"
+                android:id="@+id/viewCart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -69,7 +69,7 @@
                         android:id="@+id/totalFeeTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="0 LE"
                         android:textColor="#373b54"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -98,7 +98,7 @@
                         android:id="@+id/deliveryTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="0 LE"
                         android:textColor="#373b54"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -127,7 +127,7 @@
                         android:id="@+id/taxTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="0 LE"
                         android:textColor="#373b54"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -166,7 +166,7 @@
                         android:id="@+id/totalTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="0 LE"
                         android:textColor="#373b54"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -174,13 +174,13 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/checkout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="16dp"
                 android:background="@drawable/orange_button_background">
 
                 <TextView
-                    android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CheckOut"
@@ -225,12 +225,12 @@
                 android:id="@+id/fl_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottom_navigation"
+                android:layout_above="@+id/bottom_navigation_cart"
 
                 />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation"
+                android:id="@+id/bottom_navigation_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

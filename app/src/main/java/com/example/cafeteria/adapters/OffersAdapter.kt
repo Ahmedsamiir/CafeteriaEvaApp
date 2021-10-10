@@ -16,11 +16,11 @@ import com.example.cafeteria.models.ProductResponse
 class OffersAdapter(val context: Context, private val offeredProducts: List<ProductResponse>)  :
     RecyclerView.Adapter<OffersAdapter.ProductViewHolder>() {
     inner class ProductViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val imageView: ImageView = view.findViewById(R.id.pic)
-        val offerTitle: TextView = view.findViewById(R.id.titleTxt)
-        val addBtn:TextView = view.findViewById(R.id.addBtn)
+        val imageView: ImageView = view.findViewById(R.id.pic_offer)
+        val offerTitle: TextView = view.findViewById(R.id.titleTxt_offer)
+       // val addBtn:TextView = view.findViewById(R.id.addBtn)
 
-        val offerPrice: TextView = view.findViewById(R.id.offerPrice)
+       val offerPrice: TextView = view.findViewById(R.id.offerPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -32,10 +32,11 @@ class OffersAdapter(val context: Context, private val offeredProducts: List<Prod
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val singleProduct : ProductResponse = offeredProducts[position]
         holder.offerTitle.text = singleProduct.name
-        holder.offerPrice.text = singleProduct.price.toString()
+       holder.offerPrice.text = singleProduct.price.toString()
+        /*
         holder.addBtn.setOnClickListener {
             //TODO: go to page which update/delete product
-        }
+        }*/
 
 
         //show loading for glide:
