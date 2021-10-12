@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.cafeteria.PHONE_NUMBER
 import com.example.cafeteria.PHONE_RESPONSE
 import com.example.cafeteria.R
@@ -20,6 +23,7 @@ import com.example.cafeteria.services.ResetPasswordService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 
 class VerifyOTPActivity : AppCompatActivity() {
     private var listOfet: List<EditText> = listOf()
@@ -34,6 +38,8 @@ class VerifyOTPActivity : AppCompatActivity() {
     var otpCode4:EditText?=null
     var otpCode5:EditText?=null
     var otpCode6:EditText?=null
+    var loadingIndicator: ConstraintLayout?=null
+    var phoneNumber:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,10 @@ class VerifyOTPActivity : AppCompatActivity() {
         otpCode4 = findViewById(R.id.et_verifyotp_code4)
         otpCode5 = findViewById(R.id.et_verifyotp_code5)
         otpCode6 = findViewById(R.id.et_verifyotp_code6)
+        loadingIndicator = findViewById(R.id.loading_indicator)
+       // loadingIndicator!!.visibility = View.GONE
 
+        getPhoneResponse()
         initButtons()
         initEditTexts()
         setViewPhonenumber()
@@ -73,12 +82,11 @@ class VerifyOTPActivity : AppCompatActivity() {
     }
 
     //to phone response from last page use if needed:
-    private fun getPhoneResponse():String?{
+    private fun getPhoneResponse(){
         val bundle:Bundle? = intent.extras
         if(bundle?.containsKey(PHONE_RESPONSE)!!) {
-            return intent.extras?.get(USER_DATA) as String
+            phoneNumber = intent.extras?.get(PHONE_RESPONSE) as String
         }
-        return null
     }
 
     private fun apiGetOTP(){
@@ -99,23 +107,22 @@ class VerifyOTPActivity : AppCompatActivity() {
 
     //call api:
     private fun callApi(){
-
         verifyOtpBtn!!.isActivated=false
         val resetPasswordService: ResetPasswordService = ApiClient(this@VerifyOTPActivity).buildService(ResetPasswordService::class.java)
-        val requestCall: Call<SendOtpResponse> = resetPasswordService.sendOtp(SendOtpRequest(getInput(),resendOtp!!.text.toString()))
+        val requestCall: Call<SendOtpResponse> = resetPasswordService.sendOtp(SendOtpRequest(getInput(),phoneNumber.toString()))
         requestCall.enqueue(object: Callback<SendOtpResponse> {
             override fun onResponse(call: Call<SendOtpResponse>, response: Response<SendOtpResponse>) {
                 if(response.isSuccessful){
-
                     verifyOtpBtn!!.isActivated=true
+                    //loadingIndicator!!.visibility = View.VISIBLE
                     if(response.body()!!.isCorrect){
-                        val intent = Intent(this@VerifyOTPActivity, MainActivity::class.java)
-                        intent.putExtra(PHONE_RESPONSE,getPhoneResponse())
-                        startActivity(Intent(this@VerifyOTPActivity, MainActivity::class.java))
-
+                        val intent = Intent(this@VerifyOTPActivity, LoginActivity::class.java)
+                        intent.putExtra("MESSAGE_RESPONSE",response.body() as Serializable)
+                        startActivity(intent)
                         finish()
                     }else{
-                       error("Wrong OTP, try again.")
+                        Toast.makeText(this@VerifyOTPActivity, "Wrong OTP, try again", Toast.LENGTH_LONG).show()
+                       //error("Wrong OTP, try again.")
                     }
                 }else{
                     val errorCode:String = when(response.code()){
@@ -130,7 +137,9 @@ class VerifyOTPActivity : AppCompatActivity() {
                         }
                     }
 
+                    //loadingIndicator!!.visibility = View.GONE
                     verifyOtpBtn!!.isActivated=true
+
                 }
             }
 
@@ -186,11 +195,11 @@ class VerifyOTPActivity : AppCompatActivity() {
 
     private fun initButtons(){
         verifyOtpBtn!!.setOnClickListener {
-            apiGetOTP()
+            callApi()
         }
 
         resendOtp!!.setOnClickListener {
-            startActivity(Intent(this, SendOTP::class.java))
+            startActivity(Intent(this@VerifyOTPActivity, VerifyOTPActivity::class.java))
             finish()
         }
 

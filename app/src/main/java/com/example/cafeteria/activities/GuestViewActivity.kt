@@ -42,9 +42,9 @@ class GuestViewActivity : AppCompatActivity() {
         recycleViewoffers = findViewById(R.id.rv_offers)
 
         // recycle for category Items
-        //recycleViewCategory()
+        recycleViewCategory()
         // recycle for Recommended Items
-        //recycleViewRecommended()
+        recycleViewRecommended()
 
         // toggle between bottom navbar Item
         onBottomNavSelected()

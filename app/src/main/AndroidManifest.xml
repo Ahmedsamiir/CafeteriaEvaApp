@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cafeteria"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activities.SingleMealActivity"
-            android:exported="true" />
+
         <activity
             android:name=".activities.OffersActivity"
             android:exported="true"
@@ -56,6 +54,9 @@
             android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activities.GuestViewActivity"
+            android:theme="@style/Theme.Transparent"></activity>
+        <activity
+            android:name=".activities.VerifyOTPActivity"
             android:theme="@style/Theme.Transparent"></activity>
     </application>
 

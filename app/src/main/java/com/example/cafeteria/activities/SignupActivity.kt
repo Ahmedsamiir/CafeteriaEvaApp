@@ -3,9 +3,12 @@ package com.example.cafeteria.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.cafeteria.PHONE_RESPONSE
 import com.example.cafeteria.R
 import com.example.cafeteria.USER_DATA
 import com.example.cafeteria.activities.SendOTP
@@ -26,6 +29,8 @@ var etConfirmPass: EditText? = null
 var etMobileNum: EditText? = null
 var signUpBtn: Button? = null
 
+var loadingIndicator: ConstraintLayout?=null
+
 
 
 //To get access token:
@@ -41,6 +46,8 @@ class SignupActivity : AppCompatActivity() {
         etConfirmPass = findViewById(R.id.confirm_pass)
         etMobileNum = findViewById(R.id.mobile_num)
         signUpBtn = findViewById(R.id.signup_btn)
+        loadingIndicator = findViewById(R.id.loading_indicator)
+      //  loadingIndicator!!.visibility = View.GONE
 
         sessionManager = SessionManager(this@SignupActivity)
 
@@ -59,13 +66,7 @@ class SignupActivity : AppCompatActivity() {
 
             signUpBtn!!.isActivated = false
             //first validate the fields:
-            if (UserHelper.validateRegisterData(
-                    this@SignupActivity,
-                    etName,
-                    etEmail,
-                    etPass,
-                    etConfirmPass,
-                    etMobileNum
+            if (UserHelper.validateRegisterData(this@SignupActivity, etName, etEmail, etPass, etConfirmPass, etMobileNum
                 )
             ) {
 
@@ -83,9 +84,9 @@ class SignupActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                            // sessionManager.saveAccessTokenRegister(response.body()!!)
-                               Toast.makeText(this@SignupActivity, "Logined successfully", Toast.LENGTH_LONG).show()
+                               Toast.makeText(this@SignupActivity, "signed up successfully", Toast.LENGTH_LONG).show()
 
-                            goToHome(response.body()!!)
+                            goToVerify(response.body()!!)
                         } else {
                             val errorCode: String = when (response.code()) {
                                 400 -> {
@@ -126,9 +127,9 @@ class SignupActivity : AppCompatActivity() {
     /**
      * To go to verify by mobile number  with register response data:
      * */
-    private fun goToHome(registerResponse: RegisterResponse){
-        val intent = Intent(this@SignupActivity, SendOTP::class.java)
-        intent.putExtra(USER_DATA,registerResponse)
+    private fun goToVerify(registerResponse: RegisterResponse){
+        val intent = Intent(this@SignupActivity, VerifyOTPActivity::class.java)
+        intent.putExtra(PHONE_RESPONSE,etMobileNum!!.text.toString())
         startActivity(intent)
         finish()
     }

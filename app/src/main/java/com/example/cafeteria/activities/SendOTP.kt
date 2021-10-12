@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -24,7 +25,6 @@ class SendOTP : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_otp)
-
         sendOtpBtn = findViewById(R.id.send_otpBtn)
         sendOtpNumInput = findViewById(R.id.etSendotpInputmobile)
         initButtons()
@@ -125,4 +125,5 @@ class SendOTP : AppCompatActivity() {
             //There is Error Here
         }
     }
+
 }

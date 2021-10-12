@@ -22,6 +22,7 @@
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/orange_bar.xml" value="0.1" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/profile_shape.xml" value="0.1" />
+        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/progress_bar_shape.xml" value="0.1274247491638796" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/rectangle_orange_btn_background.xml" value="0.1" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/rectangle_shape.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/drawable/search_edit_background.xml" value="0.13010033444816055" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_category_details.xml" value="0.11705685618729098" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_guest_view.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_intro.xml" value="0.1" />
-        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_offers.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_reset_pass.xml" value="0.1" />
@@ -40,7 +41,7 @@
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_show_meal.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_signup.xml" value="0.11548913043478261" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_skip_home.xml" value="0.12094594594594595" />
-        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_verify_otp.xml" value="0.12094594594594595" />
+        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/activity_verify_otp.xml" value="0.22" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/error.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/food_item.xml" value="0.10347222222222222" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/foode_item.xml" value="0.11824324324324324" />
@@ -56,6 +57,7 @@
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/offer_item.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/offers_fragment.xml" value="0.1" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/orders_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/progress_bar.xml" value="0.11824324324324324" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/signup_tab_fragment.xml" value="0.12228260869565218" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/splash_screen.xml" value="0.21153846153846154" />
         <entry key="..\:/Users/pccc/StudioProjects/Cafeteria/app/src/main/res/layout/viewholder_recommended.xml" value="0.12094594594594595" />

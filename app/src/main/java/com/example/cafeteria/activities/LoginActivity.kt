@@ -2,12 +2,11 @@ package com.example.cafeteria.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AlertDialog.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.cafeteria.*
 import com.example.cafeteria.helpers.UserHelper
 import com.example.cafeteria.models.UserRequest
@@ -26,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
     var loginBtn: Button? = null
     var forgetPassBtn : TextView? = null
     var signup:TextView?= null
+    var circular_determinative_pb: ProgressBar? = null
+    var loadingIndicator: ConstraintLayout?=null
 
     var skip :TextView? = null
 
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        circular_determinative_pb= findViewById(R.id.circular_determinative_pb)
 
 
         signup = findViewById(R.id.go_to_signup)
@@ -47,8 +49,8 @@ class LoginActivity : AppCompatActivity() {
         etemail = findViewById(R.id.et_email)
         etpassword = findViewById(R.id.pass)
         skip = findViewById(R.id.skip)
-
-
+        loadingIndicator = findViewById(R.id.loading_indicator)
+        loadingIndicator!!.visibility = View.GONE
 
 
 
@@ -87,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
             loginBtn!!.isActivated = false
             //first validate the fields:
             if(UserHelper.validateLoginData(this@LoginActivity, etemail, etpassword)){
-
+                loadingIndicator!!.visibility = View.VISIBLE
                 //second check if email or password are correct:
                 val userRequest = UserRequest(etemail!!.text.toString(), etpassword!!.text.toString())
                 val loginService:LoginService = ApiClient(this@LoginActivity).buildService(LoginService::class.java)
@@ -98,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
                             sessionManager.saveAccessToken(response.body()!!)
                             Toast.makeText(this@LoginActivity,"Logined Successfully",Toast.LENGTH_LONG).show()
                             goToHome(response.body()!!)
+                            loadingIndicator!!.visibility = View.GONE
                         }else{
                             val errorCode:String = when(response.code()){
                                 400 ->{
@@ -113,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
                                     "Unknown error!"
                                 }
                             }
+                            loadingIndicator!!.visibility = View.GONE
                             loginBtn!!.isActivated = true
                             Toast.makeText(this@LoginActivity, "email or password is incorrect",Toast.LENGTH_LONG).show()
 
@@ -120,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-
+                        loadingIndicator!!.visibility = View.GONE
                         loginBtn!!.isActivated = true
                         Toast.makeText(this@LoginActivity, "email or password is incorrect",Toast.LENGTH_LONG).show()
 
@@ -147,6 +151,11 @@ class LoginActivity : AppCompatActivity() {
         intent.putExtra(USER_DATA,userResponse)
         startActivity(intent)
         finish()
+    }
+
+    fun setProgressTo(progress: Int){
+        //progress_tv.text = "$progress%"
+        circular_determinative_pb!!.progress = progress
     }
 
 
